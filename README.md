@@ -2,11 +2,28 @@
 
 Ein einfaches Beispiel zum erfassen von Metriken aus go heraus.
 
+## Erstellen des binary
+
+### Windows
+Unter Windows 10 die Powershell starten und die Umgebungsvariablen setzen und erstellen:
+
+```Powershell
+$env:GOOS="linux"
+$env:GOARCH="amd64"
+
+go build  -o bin/go_exporter
+```
+
+### MacOS & Linux
+
+```bash
+env GOOS=linux GOARCH=amd64 go build  -o bin/go_exporter
+```
 ## Setup
 
 Go exporter auf einer Linux VM starten
 
-```shell
+```bash
 # Benutzer `go_exporter` erstellen:
 useradd --no-create-home --shell /bin/false go_exporter
 
@@ -36,7 +53,7 @@ sudo systemctl start go_exporter.service
 
  Den Exporter in der Konfiguration hinzufügen:
 
-```shell
+```bash
 # login auf prometheus server
 ssh azureuser@5.6.7.8
 
@@ -56,7 +73,7 @@ scrape_configs:
 
 Hinweis: die IP muss entsprechend der VM auf der der Exporter gestartet wurden angepasst werden.
 
-```shell
+```bash
 # Prometheus neustarten:
 sudo systemctl restart prometheus
 ```
