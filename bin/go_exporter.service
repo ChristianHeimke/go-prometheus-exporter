@@ -1,0 +1,12 @@
+[Unit]
+Description=Go Exporter
+After=network.target
+
+[Service]
+User=go_exporter
+Group=go_exporter
+Type=simple
+ExecStart=/usr/local/bin/go_exporter
+
+[Install]
+WantedBy=multi-user.target
